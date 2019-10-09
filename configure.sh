@@ -38,6 +38,15 @@ echo -e "\n"
 mkdir -p ${BUILD_PATH}
 cd ${BUILD_PATH}
 
+# We change some of the USD archive's CMake files by some custom ones, in order to be able to only build the plugin we
+# are interested in, without having to also build the USD core itself.
+rm ${EXTRACT_PATH}/CMakeLists.txt
+rm ${EXTRACT_PATH}/cmake/defaults/Options.cmake
+rm ${EXTRACT_PATH}/third_party/katana/CMakeLists.txt
+cp ${REZ_BUILD_SOURCE_PATH}/config/CMakeLists.txt ${EXTRACT_PATH}/CMakeLists.txt
+cp ${REZ_BUILD_SOURCE_PATH}/config/cmake/defaults/Options.cmake ${EXTRACT_PATH}/cmake/defaults/Options.cmake
+cp ${REZ_BUILD_SOURCE_PATH}/config/third_party/katana/CMakeLists.txt ${EXTRACT_PATH}/third_party/katana/CMakeLists.txt
+
 # The OCIO CMake script is only looking at "/lib", leaving out "/lib64" in the process.
 sed "s| lib/| lib/ /lib64|1" --in-place ${EXTRACT_PATH}/cmake/modules/FindOpenImageIO.cmake
 
@@ -57,6 +66,7 @@ cmake \
     -DPXR_STRICT_BUILD_MODE=OFF \
     -DPXR_VALIDATE_GENERATED_CODE=OFF \
     -DPXR_HEADLESS_TEST_MODE=OFF \
+    -DPXR_BUILD_USD_CORE=ON \
     -DPXR_BUILD_TESTS=ON \
     -DPXR_BUILD_IMAGING=ON \
     -DPXR_BUILD_EMBREE_PLUGIN=OFF \
