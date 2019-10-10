@@ -59,6 +59,12 @@ if (${PXR_BUILD_USD_CORE})
     add_subdirectory(extras)
 endif()
 
+if (${PXR_BUILD_USDVIEW})
+    add_subdirectory(pxr/usdImaging/bin/testusdview/)
+    add_subdirectory(pxr/usdImaging/bin/usdview/)
+    add_subdirectory(pxr/usdImaging/lib/usdviewq)
+endif()
+
 if (${PXR_BUILD_KATANA_PLUGIN})
     add_subdirectory(third_party/katana)
 endif()

@@ -38,7 +38,6 @@ variants = [
 tools = [
     "sdfdump",
     "sdffilter",
-    "testusdview",
     "usdcat",
     "usdchecker",
     "usddiff",
@@ -50,7 +49,6 @@ tools = [
     "usdstitch",
     "usdstitchclips",
     "usdtree",
-    "usdview",
     "usdzip"
 ]
 

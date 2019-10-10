@@ -42,10 +42,8 @@ cd ${BUILD_PATH}
 # are interested in, without having to also build the USD core itself.
 rm ${EXTRACT_PATH}/CMakeLists.txt
 rm ${EXTRACT_PATH}/cmake/defaults/Options.cmake
-rm ${EXTRACT_PATH}/third_party/katana/CMakeLists.txt
 cp ${REZ_BUILD_SOURCE_PATH}/config/CMakeLists.txt ${EXTRACT_PATH}/CMakeLists.txt
 cp ${REZ_BUILD_SOURCE_PATH}/config/cmake/defaults/Options.cmake ${EXTRACT_PATH}/cmake/defaults/Options.cmake
-cp ${REZ_BUILD_SOURCE_PATH}/config/third_party/katana/CMakeLists.txt ${EXTRACT_PATH}/third_party/katana/CMakeLists.txt
 
 # The OCIO CMake script is only looking at "/lib", leaving out "/lib64" in the process.
 sed "s| lib/| lib/ /lib64|1" --in-place ${EXTRACT_PATH}/cmake/modules/FindOpenImageIO.cmake
@@ -73,7 +71,7 @@ cmake \
     -DPXR_BUILD_OPENIMAGEIO_PLUGIN=ON \
     -DPXR_BUILD_OPENCOLORIO_PLUGIN=ON \
     -DPXR_BUILD_USD_IMAGING=ON \
-    -DPXR_BUILD_USDVIEW=ON \
+    -DPXR_BUILD_USDVIEW=OFF \
     -DPXR_BUILD_KATANA_PLUGIN=OFF \
     -DPXR_BUILD_MAYA_PLUGIN=OFF \
     -DPXR_BUILD_ALEMBIC_PLUGIN=ON \
