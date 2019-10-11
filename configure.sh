@@ -38,13 +38,6 @@ echo -e "\n"
 mkdir -p ${BUILD_PATH}
 cd ${BUILD_PATH}
 
-# We change some of the USD archive's CMake files by some custom ones, in order to be able to only build the plugin we
-# are interested in, without having to also build the USD core itself.
-rm ${EXTRACT_PATH}/CMakeLists.txt
-rm ${EXTRACT_PATH}/cmake/defaults/Options.cmake
-cp ${REZ_BUILD_SOURCE_PATH}/config/CMakeLists.txt ${EXTRACT_PATH}/CMakeLists.txt
-cp ${REZ_BUILD_SOURCE_PATH}/config/cmake/defaults/Options.cmake ${EXTRACT_PATH}/cmake/defaults/Options.cmake
-
 # The OCIO CMake script is only looking at "/lib", leaving out "/lib64" in the process.
 sed "s| lib/| lib/ /lib64|1" --in-place ${EXTRACT_PATH}/cmake/modules/FindOpenImageIO.cmake
 
@@ -71,9 +64,9 @@ cmake \
     -DPXR_BUILD_OPENIMAGEIO_PLUGIN=ON \
     -DPXR_BUILD_OPENCOLORIO_PLUGIN=ON \
     -DPXR_BUILD_USD_IMAGING=ON \
-    -DPXR_BUILD_USDVIEW=OFF \
-    -DPXR_BUILD_KATANA_PLUGIN=OFF \
-    -DPXR_BUILD_MAYA_PLUGIN=OFF \
+    -DPXR_BUILD_USDVIEW=ON \
+    -DPXR_BUILD_KATANA_PLUGIN=ON \
+    -DPXR_BUILD_MAYA_PLUGIN=ON \
     -DPXR_BUILD_ALEMBIC_PLUGIN=ON \
     -DPXR_BUILD_HOUDINI_PLUGIN=OFF \
     -DPXR_BUILD_PRMAN_PLUGIN=OFF \
@@ -96,7 +89,9 @@ cmake \
     -DILMBASE_LOCATION=${REZ_ILMBASE_ROOT} \
     -DOPENSUBDIV_ROOT_DIR=${REZ_OPENSUBDIV_ROOT} \
     -DPTEX_LOCATION=${REZ_PTEX_ROOT} \
-    -DTBB_ROOT_DIR=${REZ_TBB_ROOT}
+    -DTBB_ROOT_DIR=${REZ_TBB_ROOT} \
+    -DKATANA_API_LOCATION=${REZ_KATANA_HOME} \
+    -DMAYA_LOCATION=${REZ_MAYA_ROOT}
 
 echo -e "\n"
 echo -e "[CONFIGURE] Finished configuring USD-${USD_VERSION}!"
