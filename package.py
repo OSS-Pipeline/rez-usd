@@ -75,6 +75,7 @@ def commands():
     env.MAYA_SHELVES_ICONS = "{root}/third_party/maya/lib/usd/usdMaya/resources"
     env.MAYA_SHELF_PATH.append("{root}/third_party/maya/lib/usd/usdMaya/resources")
     env.XBMLANGPATH.append("{root}/third_party/maya/share/usd/plugins/usdMaya/resources")
+    env.CMAKE_MODULE_PATH.prepend("{root}")
 
     # Helper environment variables.
     env.USD_BINARY_PATH.set("{root}/bin")
