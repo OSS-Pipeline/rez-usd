@@ -1,6 +1,6 @@
 name = "usd"
 
-version = "19.07"
+version = "20.11"
 
 authors = [
     "Pixar"
@@ -20,8 +20,6 @@ requires = [
     "glew-2+",
     "ilmbase-2.2+<2.4",
     "jinja2-2+",
-    "katana-3.0+",
-    "maya-2017+",
     "ocio-1.0.9+",
     "openexr-2.2+<2.4",
     "oiio-1.7.14+",
@@ -67,14 +65,6 @@ def commands():
     env.PATH.prepend("{root}/bin")
     env.LD_LIBRARY_PATH.prepend("{root}/lib")
     env.PYTHONPATH.prepend("{root}/lib/python")
-    env.KATANA_RESOURCES.append("{root}/third_party/katana/plugin")
-    env.KATANA_POST_PYTHONPATH.append("{root}/third_party/katana/lib")
-    env.MAYA_PLUG_IN_PATH.append("{root}/third_party/maya/plugin")
-    env.MAYA_SCRIPT_PATH.append("{root}/third_party/maya/lib/usd/usdMaya/resources")
-    env.MAYA_SCRIPT_PATH.append("{root}/third_party/maya/plugin/pxrUsdPreviewSurface/resources")
-    env.MAYA_SHELVES_ICONS = "{root}/third_party/maya/lib/usd/usdMaya/resources"
-    env.MAYA_SHELF_PATH.append("{root}/third_party/maya/lib/usd/usdMaya/resources")
-    env.XBMLANGPATH.append("{root}/third_party/maya/share/usd/plugins/usdMaya/resources")
     env.CMAKE_MODULE_PATH.prepend("{root}")
 
     # Helper environment variables.
