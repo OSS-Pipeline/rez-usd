@@ -6,7 +6,7 @@ include(ExternalProject)
 
 # USD
 rez_set_archive(
-    USD_URL usd/USD-${REZ_BUILD_PROJECT_VERSION}.tar.gz
+    USD_URL usd/OpenUSD-${REZ_BUILD_PROJECT_VERSION}.tar.gz
     https://github.com/PixarAnimationStudios/USD/archive/v${REZ_BUILD_PROJECT_VERSION}.tar.gz
 )
 
